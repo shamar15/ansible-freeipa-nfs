@@ -1,0 +1,13 @@
+ipaserver_domain: example.com
+
+ipaserver_realm: EXAMPLE.COM
+
+ipaserver_admin_password: 'SecureAdminPass1!'
+
+ipaserver_dir_manager_password: 'SecureDMPass1!'
+
+ipaserver_ip: 192.168.1.128 # IP of your IPA server
+
+nfs_export_dir: /home # Directory to export over NFS
+
+nfs_server_ip: 192.168.1.128 # Same as IPA server in this lab
