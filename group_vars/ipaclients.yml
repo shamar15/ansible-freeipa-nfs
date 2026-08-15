@@ -1,5 +1,10 @@
+ipaclient_servers:
+  - ipa-server.lab.ipa
+
 ipaclient_domain: "{{ ipaserver_domain }}"
 
 ipaclient_realm: "{{ ipaserver_realm }}"
 
 ipaclient_admin_password: "{{ ipaserver_admin_password }}"
+
+ipaclient_mkhomedir: true
