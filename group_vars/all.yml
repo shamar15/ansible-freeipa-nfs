@@ -1,6 +1,6 @@
-ipaserver_domain: ipa.com
+ipaserver_domain: lab.ipa
 
-ipaserver_realm: IPA.COM
+ipaserver_realm: LAB.IPA
 
 ipaserver_admin_password: 'SecureAdminPass1!'
 
@@ -17,3 +17,7 @@ ipaserver_setup_dns: true
 ipaserver_auto_forwarders: true
 
 ipaserver_no_dnssec_validation: true
+
+ipadm_password: 'SecureDMPass1!'
+
+ipaadmin_password: 'SecureAdminPass1!'
