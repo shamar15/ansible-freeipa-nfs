@@ -1,0 +1,26 @@
+---
+- name: Creating users
+  hosts: ipaserver
+  become: true
+  vars:
+    ipa_users:
+      - username: alice
+        first: Alice
+        last: Smith
+        password: 'Alice123!'
+      - username: bob
+        first: Bob
+        last: Jones
+        password: 'Bob123!'
+
+  tasks:
+
+    - name: Add FreeIPA users
+      freeipa.ansible_freeipa.ipauser:
+        ipaadmin_password: "{{ ipaserver_admin_password }}"
+        name: "{{ item.username }}"
+        first: "{{ item.first }}"
+        last: "{{ item.last }}"
+        state: present
+        update_password: on_create
+      loop: "{{ ipa_users }}"
