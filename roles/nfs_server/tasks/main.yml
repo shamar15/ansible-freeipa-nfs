@@ -1,2 +1,56 @@
 ---
-# tasks file for roles/nfs_server
+- name: Install Packages
+  ansible.builtin.dnf:
+    name:
+      - nfs-utils
+      - autofs
+    state: present
+  tags: [nfs, storage]
+
+- name: Set SELinux boolean
+  ansible.builtin.command: setsebool -P use_nfs_home_dirs on
+  tags: [nfs, storage]
+
+- name: Start and enable NFS services
+  ansible.builtin.service:
+    name: "{{ item }}"
+    state: started
+    enabled: true
+  loop:
+    - nfs-server
+    - rpcbind
+  tags: [nfs, storage]
+
+- name: Configure /etc/exports
+  ansible.builtin.template:
+    src: exports.j2
+    dest: /etc/exports
+  notify: Export file
+  tags: [nfs, storage]
+
+- name: Configure /etc/auto.master
+  ansible.builtin.template:
+    src: auto.master.j2
+    dest: /etc/auto.master
+  notify: Restart autofs service
+  tags: [nfs, storage]
+
+- name: Open firewall services
+  ansible.posix.firewalld:
+    service: "{{ item }}"
+    permanent: true
+    state: enabled
+    immediate: true
+  loop:
+    - nfs
+    - mountd
+    - rpc-bind
+  tags: [nfs, storage]
+
+- name: Fix /etc/idmapd.conf
+  ansible.builtin.lineinfile:
+    path: /etc/idmapd.conf
+    regexp: '^[#]?Domain\s*='
+    line: "Domain = lab.ipa"
+  tags: [nfs, storage]
+

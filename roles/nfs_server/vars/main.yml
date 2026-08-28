@@ -1,2 +1,2 @@
 ---
-# vars file for roles/nfs_server
+ nfs_server_export_homedir: "/home *.lab.ipa(rw,no_root_squash,no_subtree_check)"
