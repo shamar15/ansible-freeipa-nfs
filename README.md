@@ -49,27 +49,41 @@ The goal is to demonstrate repeatable Linux infrastructure automation with a foc
 ## Repository Structure
 
 .
+├── docs
+│   └── test_results.txt
+├── group_vars
+│   ├── all.yml
+│   ├── ipaclients.yml
+│   └── users_vault.yml
+├── inventory
+│   └── hosts.ini
+├── playbooks
+│   ├── create_users.yml
+│   ├── nfs_sever_role.yml
+│   └── site.yml
+├── roles
+│   └── nfs_server
+│       ├── defaults
+│       │   └── main.yml
+│       ├── files
+│       ├── handlers
+│       │   └── main.yml
+│       ├── meta
+│       │   └── main.yml
+│       ├── tasks
+│       │   └── main.yml
+│       ├── templates
+│       │   ├── auto.master.j2
+│       │   └── exports.j2
+│       ├── tests
+│       │   ├── inventory
+│       │   └── test.yml
+│       ├── vars
+│       │   └── main.yml
+│       └── README.md
 ├── ansible.cfg
-├── requirements.yml
-├── inventory/
-│ └── hosts.ini
-├── group_vars/
-│ ├── all.yml
-│ ├── ipaclients.yml
-│ └── vault.yml
-├── playbooks/
-│ ├── site.yml
-│ └── create_users.yml
-├── roles/
-│ └── nfs_server/
-│ ├── handlers/
-│ ├── tasks/
-│ ├── templates/
-│ └── vars/
-├── docs/
-│ └── test_results.txt
+├── LICENSE
 └── README.md
-
 ---
 
 ## Inventory Design
