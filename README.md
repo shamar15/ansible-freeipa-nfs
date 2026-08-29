@@ -1,4 +1,4 @@
-# ansible-freeipa-nfs
+# Ansible-freeipa-nfs
 
 Ansible automation to deploy a FreeIPA identity management environment with NFS-backed roaming home directories across RHEL/CentOS Linux clients.
 
@@ -69,7 +69,6 @@ The goal is to demonstrate repeatable Linux infrastructure automation with a foc
 ├── docs/
 │ └── test_results.txt
 └── README.md
-
 
 ---
 
