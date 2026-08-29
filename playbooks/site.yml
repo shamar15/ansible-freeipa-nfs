@@ -1,0 +1,19 @@
+---
+- name: Deploy FreeIPA Server
+  import_playbook: ../collections/ansible_collections/freeipa/ansible_freeipa/playbooks/install-server.yml
+
+- name: Enroll FreeIPA Clients
+  import_playbook: ../collections/ansible_collections/freeipa/ansible_freeipa/playbooks/install-client.yml
+
+- name: Configure NFS exports and autofs
+  hosts: nfsservers
+  become: true
+  roles:
+    - role: nfs_server
+      tags:
+        - nfs
+        - storage
+
+
+- name: Create FreeIPA Users
+  import_playbook: create_users.yml
