@@ -1,0 +1,10 @@
+ipaclient_domain: lab.ipa
+
+ipaclient_realm: LAB.IPA
+
+ipaclient_servers:
+  - ipa-server.lab.ipa
+
+ipaclient_admin_password: SecureAdminPass1!
+
+ipaclient_mkhomedir: true

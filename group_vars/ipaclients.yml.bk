@@ -1,0 +1,13 @@
+ipaserver_domain: "{{ ipaserver_domain }}"
+
+ipaserver_realm: "{{ ipaserver_realm }}"
+
+ipaclient_domain: "{{ ipaserver_domain }}"
+
+ipaclient_realm: "{{ ipaserver_realm }}"
+
+ipaadmin_password: "{{ ipaserver_admin_password }}"
+
+ipaclient_mkhomedir: true # Automatically creates home directories on first login
+
+ipaclient_admin_password: "{{ ipaserver_admin_password }}"
