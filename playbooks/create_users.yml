@@ -2,19 +2,9 @@
 - name: Creating users
   hosts: ipaserver
   become: true
-  vars:
-    ipa_users:
-      - username: alice
-        first: Alice
-        last: Smith
-        password: 'Alice123!'
-      - username: bob
-        first: Bob
-        last: Jones
-        password: 'Bob123!'
-
+  vars_files:
+    - ../group_vars/users_vault.yml
   tasks:
-
     - name: Add FreeIPA users
       freeipa.ansible_freeipa.ipauser:
         ipaadmin_password: "{{ ipaserver_admin_password }}"
@@ -22,5 +12,17 @@
         first: "{{ item.first }}"
         last: "{{ item.last }}"
         state: present
+        password: "{{ item.password }}"
         update_password: on_create
+        homedir: "{{ item.homedirectory }}"
+      loop: "{{ ipa_users }}"
+
+    - name: Create physical home directory on designated host
+      ansible.builtin.file:
+        path: "/home/{{ item.username }}"
+        state: directory
+        owner: "{{ item.username }}"
+        group: "{{ item.username }}"
+        mode: '0700'
+      delegate_to: "{{ item.home_host }}"
       loop: "{{ ipa_users }}"
