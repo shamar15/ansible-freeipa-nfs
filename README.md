@@ -45,23 +45,22 @@ The goal is to demonstrate repeatable Linux infrastructure automation with a foc
 - **GitHub** — version control
 
 ---
-
 ## Repository Structure
 
+```
 .
 ├── ansible.cfg
 ├── docs/
 │   └── test_results.txt
-├── group_vars
-│   ├── all.yml
-│   ├── ipaclients.yml
-│   └── users_vault.yml
+├── group_vars/
+│   ├── all.yml
+│   ├── ipaclients.yml
+│   └── users_vault.yml
 ├── inventory/
 │   └── hosts.ini
 ├── playbooks/
-│   ├── create-freeipa-users.yml
-│   ├── nfs_server_role.yml
-│   └── site.yml
+│   ├── site.yml
+│   └── create_users.yml
 ├── roles/
 │   └── nfs_server/
 │       ├── defaults/
@@ -69,9 +68,11 @@ The goal is to demonstrate repeatable Linux infrastructure automation with a foc
 │       ├── tasks/
 │       ├── templates/
 │       └── vars/
+├── ansible.cfg
 ├── requirements.yml
 ├── LICENSE
 └── README.md
+```
 ---
 
 ## Inventory Design
